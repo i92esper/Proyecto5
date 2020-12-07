@@ -61,6 +61,8 @@ class Visita_guiada{
     inline string getMonitor() const {return monitor_;}
     //Funcion done que devuelve el estado de la visita guiada
     inline done getRealizada() const {return estado_;}
+    //Funcion void que asigna el estado de realizada para su posterior borrado lógico
+    inline void setRealizada() {estado_=DONE;}
     //Funcion void que asigna el estado de eliminado para su posterior borrado lógico
     inline void eliminarVisita() {estado_=DELETED;}
     //Funcion boolean que retorna true si se ha eliminado una visita o mas, y false si no se ha borrado ninguna visita
