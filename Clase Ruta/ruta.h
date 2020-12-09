@@ -34,7 +34,7 @@ class Ruta{
     //Bolean que retorna true en caso de que se haya asignado uno de los tipos de dificultades disponibles en el sistema
     bool setDificultad(char dificultad);
     //Boolean que retorna true en caso de que se hayan asignado correctamente los senderos a la instancia de la ruta
-    bool setSenderos(vector<Sendero> &senderos);
+    bool setSenderos(vector<Sendero> senderos);
 };
 
 #endif
