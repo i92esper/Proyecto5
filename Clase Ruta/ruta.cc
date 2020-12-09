@@ -37,7 +37,7 @@ bool Ruta::setDificultad(char dificultad){
   return true;
 }
 
-bool Ruta::setSenderos(vector<Sendero> &senderos){
+bool Ruta::setSenderos(vector<Sendero> senderos){
   if(senderos.size() > 8){
     return false;
   }
