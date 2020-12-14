@@ -1,7 +1,7 @@
 /*
   Fichero: visita_guiada_unittest.cc
-  Descripción: fichero con los test de la clase Visita Visita guiada
-  Autor: Ricardo Espantaleón Pérez
+  Descripción: fichero con los test de la clase Visita Visita guiada.
+  Autor: Ricardo Espantaleón Pérez.
 */
 #include "gtest/gtest.h"
 #include "visita_guiada.h"
