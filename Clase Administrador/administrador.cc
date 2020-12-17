@@ -1,8 +1,6 @@
 #include <vector>
 #include <iostream>
-#include "monitor.h"
 #include <string>
-#include "visita_guiada.h"
 #include "administrador.h"
 using namespace std;
 
@@ -13,8 +11,10 @@ bool Administrador::iniciarSesion(vector <Administrador> a){
 }
 return false;
 }
-void Administrador::cerrarSesion(){exit(-1);};
+void Administrador::cerrarSesion(){exit(-1);}
 
-void Administrador::verificarUsuario(vector <Administrador> a,Administrador b){
+int Administrador::verificarUsuario(vector <Administrador> a){
+    Administrador b(getUsuario(),getCodigo());
     a.push_back(b);
+    return a.size();
 }
