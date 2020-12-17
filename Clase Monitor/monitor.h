@@ -13,9 +13,13 @@ private:
   string usuario_;
   list <Visita_guiada> visitas_asignadas_;
 public:
+  Monitor(string nombre_completo) {
+    nombre_completo_=nombre_completo;
+  }
   void getHorario(vector <Visita_guiada> vg);
   void confirmarAsistencia(Visita_guiada &a);
   bool identificacion(string dni_,vector <string> v);
   inline string getDNI(){return DNI_;}
+  bool setDNI(string dni);
 };
 #endif
