@@ -24,11 +24,11 @@ if(b.compare(a)==0){
 
 void Monitor::confirmarAsistencia(Visita_guiada &a){
   a.getRealizada();
-char arr1 [23] = {'T','R','W','A','G','M','Y','F','P','D','X','B','N','J','Z','S','Q','V','H','L','C','K','E'}
+char arr1 [23] = {'T','R','W','A','G','M','Y','F','P','D','X','B','N','J','Z','S','Q','V','H','L','C','K','E'};
 bool Monitor::setDNI(string dni){
   int numeros=stoi(dni);
   if(arr1[numeros%23] != dni[dni.size()-1]){
   return false;}
-  dni_=dni;
+  DNI_=dni;
   return true;
 }
