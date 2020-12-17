@@ -1,34 +1,58 @@
-//Monitor.cc, por Nicolas Lopez
-
-#include <list>
-#include <vector>
-#include "visita_guiada.h"
-#include "monitor.h"
 #include <string>
 #include <iostream>
+#include <ctime>
 using namespace std;
-bool Monitor::identificacion(string dni_,vector <string> v){
+//definimos el puntero de tm que tendrá la hora local
+tm * lotm;
+Monitor::Monitor(){
+  time_t now=time(NULL);
+  lotm=localtime(&now);
+  nombre_completo_="";
+  DNI_="";
+  estado_=false;
+  fecha_.tm_year=0;
+  fecha_.tm_mon=0;
+  fecha_.tm_mday=0;
+
+  visitas_asignadas_.clear();
+
+}
+bool Monitor::setDNI(string dni){
+  DNI_=dni;
+  return true;
+}
+bool Monitor::identificacion(vector <string> v){
 for (vector<string>::iterator i=v.begin();i!=v.end();i++){
 string a=getDNI(),b=*i;
-if(b.compare(a)==0){return true;}
+if(b.compare(a)==0){
+  return true;}
 }
 return false;
 }
 void Monitor::getHorario(vector <Visita_guiada> vg){
 for (vector<Visita_guiada>::iterator i=vg.begin();i!=vg.end();i++){
-string a=getDNI(),b=i.getMonitor();
-if(b.compare(a)==0){
-    visitas_asignadas_.push_back(i)}
+string a=getDNI(),b=i->getMonitor();
+if(b.compare(a)==0 && setFecha(getFecha())){
+    visitas_asignadas_.push_back(*i);}
   }
 }
 
 void Monitor::confirmarAsistencia(Visita_guiada &a){
-  a.getRealizada();
-char arr1 [23] = {'T','R','W','A','G','M','Y','F','P','D','X','B','N','J','Z','S','Q','V','H','L','C','K','E'};
-bool Monitor::setDNI(string dni){
-  int numeros=stoi(dni);
-  if(arr1[numeros%23] != dni[dni.size()-1]){
-  return false;}
-  DNI_=dni;
-  return true;
+  a.setRealizada();
 }
+bool Monitor::setFecha(tm fecha){
+if(fecha.tm_year < lotm->tm_year){return false;}
+if (fecha.tm_mon < lotm->tm_mon && fecha.tm_year == lotm->tm_year){return false;}
+if(fecha.tm_mon == lotm->tm_mon && fecha.tm_year == lotm->tm_year && fecha.tm_mday < lotm->tm_mday){return false;}
+fecha_=fecha;
+return true;
+}
+bool Monitor::crearMonitor(string nombre,string dni,tm fecha){
+nombre_completo_=nombre;
+if(!setDNI(dni)) {return false;}
+DNI_=dni;
+if(!setFecha(fecha)){return false;}
+fecha_=fecha;
+estado_=true;
+return true;
+};
