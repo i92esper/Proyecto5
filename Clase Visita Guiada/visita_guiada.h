@@ -34,6 +34,8 @@ class Visita_guiada{
     int ruta_;
     //Crear clase monitor, para asi comprobar si esta identificado en el sistema, y asi poder asignarlo a la visita
     string monitor_;
+    //Numero de visitantes en la visita
+    int nvisitantes_;
   public:
     //Constructor de la clase, inicia la semilla para la generacion del ID de la instancia particular
     Visita_guiada();
@@ -48,7 +50,7 @@ class Visita_guiada{
     //Funcion booleana que comprueba que el monitor introducido existe dentro del sistema
     bool setMonitor(string monitor);
     //Funcion void que crea un ID alfanumérico asignado a cada visita particular
-    inline void createID() {id_=fecha_.tm_mon+fecha_.tm_hour+monitor_[0]+monitor_[monitor_.size()-1];}
+    void createID();
     //Funcion string que retorna el ID asignado a la visita
     inline string getID() const {return id_;}
     //Funcion tm que retorna la fecha asignada a la visita
@@ -68,9 +70,13 @@ class Visita_guiada{
     //Funcion boolean que retorna true si se ha eliminado una visita o mas, y false si no se ha borrado ninguna visita
     friend bool borrarVisitas(vector<Visita_guiada> vg);
     //Funcion boolean que asigna true si se ha podido asignar la nueva fecha deseada
-    bool modificarVisita(tm fecha);
+    bool modificarVisita(tm &fecha);
     //Funcion boolean que asigna true si se ha podido asignar la nueva ruta deseada
     bool modificarVisita(int ruta);
+    //Funcion boolean que retorna true en caso de que el numero de visitantes sea valido
+    bool setNvisitantes(int nvisitantes);
+    //Funcion int que retornar el numero de visitantes de la visita creada
+    inline int getNvisitantes() const {return nvisitantes_;}
 };
 
 #endif
