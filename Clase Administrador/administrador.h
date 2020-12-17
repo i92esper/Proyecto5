@@ -1,24 +1,30 @@
+//administrador, por Nicolas Lopez
 #ifndef ADMINISTRADOR_H
 #define ADMINISTRADOR_H
 #include <vector>
 #include <iostream>
 #include <string>
-#include "monitor.h"
-#include "visita_guiada.h"
 using namespace std;
 class Administrador{
 private:
+  //nombre del administrador
   string usuario_;
+  //codigo de identificacion
   string codigo_;
 public:
-Administrador(string usuario,string codigo){
+//constructor básico
+  Administrador(string usuario,string codigo){
 usuario_=usuario;
 codigo_=codigo;
 }
+  //inicia la sesion si el nombre está en el vector
 bool iniciarSesion(vector <Administrador> a);
-void cerrarSesion();
-void verificarUsuario(vector <Administrador> a,Administrador b);
-inline string getUsuario(){return usuario_;};
+//termina la ejecucción del programa
+  void cerrarSesion();
+//mete un elemento en el vector
+  int verificarUsuario(vector <Administrador> a);
+//serie de gets y sets
+ inline string getUsuario(){return usuario_;};
 inline string getCodigo(){return codigo_;};
 inline void setCodigo(string codigo){codigo_=codigo;};
 inline void setUsuario(string usuario){usuario_=usuario;};
