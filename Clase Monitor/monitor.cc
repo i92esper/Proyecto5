@@ -24,5 +24,4 @@ if(b.compare(a)==0){
 
 void Monitor::confirmarAsistencia(Visita_guiada &a){
   a.getRealizada();
-  a.eliminarVisita();
 }
