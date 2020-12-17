@@ -17,8 +17,12 @@ Visita_guiada::Visita_guiada(){
   ruta_=0;
   monitor_="";
   dni_="";
-  fecha_=localtime(&now);
+  fecha_.tm_year=1970;
+  fecha_.tm_mon=1;
+  fecha_.tm_mday=1;
+  id_.resize(5);
   id_="";
+  nvisitantes_=0;
 }
 
 bool Visita_guiada::crearVisita(tm fecha, string dni, int ruta, string monitor){
@@ -31,13 +35,14 @@ bool Visita_guiada::crearVisita(tm fecha, string dni, int ruta, string monitor){
   if(!setMonitor(monitor))
     return false;
   estado_=VERIFIED;
+  createID();
   return true;
 }
 
 bool Visita_guiada::setFecha(tm &fecha){
-  if(ltm->tm_mon > fecha.tm_mon)
-    return false;
   if(fecha.tm_mon-ltm->tm_mon > 2)
+    return false;
+  if(fecha.tm_year < ltm->tm_year)
     return false;
   fecha_=fecha;
   return true;
@@ -64,7 +69,7 @@ bool Visita_guiada::setMonitor(string monitor){
 
 bool borrarVisitas(vector<Visita_guiada> vg){
   int flag=false;
-  for(int i=0; i<vg.size(); ++i){
+  for(unsigned int i=0; i<vg.size(); ++i){
     if(vg[i].estado_==DONE || vg[i].estado_==DELETED){
       vg.erase(vg.begin()+i);
       flag=true;
@@ -79,8 +84,21 @@ bool Visita_guiada::modificarVisita(int ruta){
   return true;
 }
 
-bool Visita_guiada::modificarVisita(tm fecha){
+bool Visita_guiada::modificarVisita(tm &fecha){
   if(!setFecha(fecha))
     return false;
   return true;
+}
+
+bool Visita_guiada::setNvisitantes(int nvisitantes){
+  if(nvisitantes < 1 || nvisitantes > 10)
+    return false;
+  nvisitantes_=nvisitantes;
+  return true;
+}
+
+void Visita_guiada::createID(){
+  for(int i=0; i<5; ++i){
+    id_=id_+arr1[rand()%23];
+  }
 }
