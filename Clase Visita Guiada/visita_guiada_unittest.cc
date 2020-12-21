@@ -9,7 +9,7 @@
 
 using namespace std;
 
-TEST(Visita_guiada, crearVisita){ //Creacion correcta de la visita guiada
+TEST(Visita_guiada, crearVisita){ //Creación correcta de la visita guiada
   Visita_guiada prueba;
   tm fecha;
   fecha.tm_year=2020;
