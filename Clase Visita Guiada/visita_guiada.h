@@ -68,7 +68,7 @@ class Visita_guiada{
     //Funcion void que asigna el estado de eliminado para su posterior borrado lógico
     inline void eliminarVisita() {estado_=DELETED;}
     //Funcion boolean que retorna true si se ha eliminado una visita o mas, y false si no se ha borrado ninguna visita
-    friend bool borrarVisitas(vector<Visita_guiada> vg);
+    friend bool borrarVisitas(vector<Visita_guiada> &vg);
     //Funcion boolean que asigna true si se ha podido asignar la nueva fecha deseada
     bool modificarVisita(tm &fecha);
     //Funcion boolean que asigna true si se ha podido asignar la nueva ruta deseada
