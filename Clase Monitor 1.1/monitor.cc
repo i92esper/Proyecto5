@@ -38,7 +38,7 @@ return false;
 void Monitor::getHorario(vector <Visita_guiada> vg){
 for (vector<Visita_guiada>::iterator i=vg.begin();i!=vg.end();i++){
 string a=getDNI(),b=i->getMonitor();
-if(b.compare(a)==0 && setFecha(getFecha())){
+if(b.compare(a)==0 && setFecha(fecha_)){
     visitas_asignadas_.push_back(*i);}
   }
 }

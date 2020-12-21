@@ -9,12 +9,12 @@ using namespace std;
 //prueba que se recojan las visitas asignadas a ese dni
 TEST(Monitor,getHorario){
   Monitor test;
-  test.setDNI("31023573T");
   Visita_guiada a;
   tm fecha;
   fecha.tm_year=2020;
   fecha.tm_mon=12;
-  fecha.tm_mday=17;
+  fecha.tm_mday=25;
+  test.crearMonitor("Pepito","31023573T",fecha);
   a.crearVisita(fecha,"31478961B",1,"31023573T");
   vector <Visita_guiada> v;
   v.push_back(a);
@@ -26,7 +26,7 @@ TEST(Monitor,estado){
   Monitor test,test2;
   tm fecha;
   fecha.tm_year=2020;
-  fecha.tm_mon=12;
+  fecha.tm_mon=11;
   fecha.tm_mday=25;
   test.crearMonitor("31023573T","Alfonso",fecha);
   EXPECT_TRUE(test.getEstado());
@@ -56,9 +56,9 @@ TEST(Monitor,identificacion){
   fecha.tm_mon=12;
   fecha.tm_mday=25;
   Monitor test;
-  test.crearMonitor("31023573T","Alfonso",fecha);
+  EXPECT_TRUE(test.crearMonitor("31023573T","Alfonso",fecha));
   Monitor test2;
-  test2.crearMonitor("31478961B","Jose",fecha);
+  EXPECT_TRUE(test2.crearMonitor("31478961B","Jose",fecha));
   vector <string> a;
   Monitor test3;
   a.push_back(test.getDNI());
