@@ -83,3 +83,24 @@ TEST(Visita_guiada, creacionID){ //Creacion de un ID asignado a cada visita
   EXPECT_EQ(5,id.size());
 }
 
+TEST(Visita_guiada, borrarVisitas){ //Borrar las instancias de visitas con la funcion friend de la clase 
+  vector <Visita_guiada> v;
+  Visita_guiada v1, v2, v3;
+  tm fecha;
+  fecha.tm_year=2020;
+  fecha.tm_mon=11;
+  fecha.tm_mday=20;
+  string dni="31478961B";
+  int ruta=2;
+  string monitor="41087678C";
+  v1.crearVisita(fecha,dni,ruta,monitor);
+  v2.crearVisita(fecha,dni,ruta,monitor);
+  v3.crearVisita(fecha,dni,ruta,monitor);
+  v2.eliminarVisita();
+  v.push_back(v1);
+  v.push_back(v2);
+  v.push_back(v3);
+  borrarVisitas(v);
+  EXPECT_EQ(2,v.size());
+}
+
