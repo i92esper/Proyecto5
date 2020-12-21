@@ -66,8 +66,8 @@ bool Visita_guiada::setMonitor(string monitor){
   monitor_=monitor;
   return true;
 }
-
-bool borrarVisitas(vector<Visita_guiada> vg){
+//Borro las visitas pasando por referencia el objeto vector, para aplicar los cambios sobre el vector de visitas
+bool borrarVisitas(vector<Visita_guiada> &vg){
   int flag=false;
   for(unsigned int i=0; i<vg.size(); ++i){
     if(vg[i].estado_==DONE || vg[i].estado_==DELETED){
